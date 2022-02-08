@@ -45,8 +45,6 @@ body{
   transition: .5s ease;
   opacity: 0;
   position: relative;
-  top: -20%;
-	/* bottom: 80%; */
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -134,7 +132,7 @@ body{
     background: #fff;
 }
 
-.resume_wrapper .resume_left .resume_skills .skills_list .skills_bar p span{	
+.resume_wrapper .resume_left .resume_skills .skills_list .skills_bar p span{
 	position: absolute;
 	top: 0;
 	left: 0;

@@ -31,11 +31,44 @@ app.get('/',(req, res) => {
 })
 
 //resume api
-app.get('/resume',(req, res) => {
+app.get('/resume',async (req, res) => {
   const token = req.query.token;
-  const user = jwt.verify(token, JWT_SECRET);
-  //console.log(user);
-  res.render('resume');
+  const {username} = jwt.verify(token, JWT_SECRET);
+  const user = await User.findOne({ username }).lean();
+  res.render('resume',{
+    img: user.img,
+    name: user.name,
+    role: user.role,
+    info: user.info,
+    address: user.address,
+    phone: user.phone,
+    email: user.email,
+    skills: user.skills,
+    year1: user.year1,
+    title1: user.title1,
+    desc1: user.desc1,
+    year2: user.year2,
+    title2: user.title2,
+    desc2: user.desc2,
+    year3: user.year3,
+    title3: user.title3,
+    desc3: user.desc3,
+    year1ex: user.year1ex,
+    title1ex: user.title1ex,
+    desc1ex: user.desc1ex,
+    year2ex: user.year2ex,
+    title2ex: user.title2ex,
+    desc2ex: user.desc2ex,
+    year3ex: user.year3ex,
+    title3ex: user.title3ex,
+    desc3ex: user.desc3ex,
+    year4ex: user.year4ex,
+    title4ex: user.title4ex,
+    desc4ex: user.desc4ex,
+    year5ex: user.year5ex,
+    title5ex: user.title5ex,
+    desc5ex: user.desc5ex,
+  });
 })
 
 //signup api
@@ -87,7 +120,7 @@ app.post('/api/login', async (req, res)=>{
 
   if( await bcrypt.compare(password, user.password)){
     
-    const token = jwt.sign({ 
+    const token = jwt.sign({
       id:user._id,
       username:user.username
     }, JWT_SECRET);
@@ -99,9 +132,59 @@ app.post('/api/login', async (req, res)=>{
 })
 
 //uploading pic
-const upload = multer({ 
+const upload = multer({
   dest: 'images'
 });
+
+//updating info api
+app.post('/api/update', async (req, res) => {
+  const {token} = req.body;
+  const {id} = jwt.verify(token, JWT_SECRET);
+  const {name, role, info, address, phone, email, skills, year1, title1, desc1, year2, title2, desc2, year3, title3, desc3, year1ex, title1ex, desc1ex, year2ex, title2ex, desc2ex, year3ex, title3ex, desc3ex, year4ex, title4ex, desc4ex, year5ex, title5ex, desc5ex} = req.body;
+  try{
+    const my = await User.findByIdAndUpdate(id, {
+      name,
+      role,
+      info,
+      address,
+      phone,
+      email,
+      skills,
+      year1,
+      title1,
+      desc1,
+      year2,
+      title2,
+      desc2,
+      year3,
+      title3,
+      desc3,
+      year1ex,
+      title1ex,
+      desc1ex,
+      year2ex,
+      title2ex,
+      desc2ex,
+      year3ex,
+      title3ex,
+      desc3ex,
+      year4ex,
+      title4ex,
+      desc4ex,
+      year5ex,
+      title5ex,
+      desc5ex
+    })
+    if(my){
+      res.json({status: 'ok'});
+    }
+    else{
+      res.json({status: 'error'});
+    }
+  }catch(e){
+    res.json({status: 'error', error: e});
+  }
+})
 
 app.listen(port, () => {
   console.log('Server running on port ' + port);

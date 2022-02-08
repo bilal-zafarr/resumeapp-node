@@ -43,9 +43,6 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   }).then((res) => res.json());
 
   if(res.status === 'ok'){
-    //alert(res.data);
-    //resumePage(res.data); 
-    //localStorage.setItem('token', res.data);
     location.href = `/resume?token=${res.data}`;
   }
 
