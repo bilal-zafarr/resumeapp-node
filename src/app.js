@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const User = require('./models/user.js');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -96,6 +97,11 @@ app.post('/api/login', async (req, res)=>{
 
   res.json({status:'error' , error: 'Invalid Username/Password'});
 })
+
+//uploading pic
+const upload = multer({ 
+  dest: 'images'
+});
 
 app.listen(port, () => {
   console.log('Server running on port ' + port);

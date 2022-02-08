@@ -32,9 +32,42 @@ body{
 }
 
 .resume_wrapper .resume_left .resume_image img{
-	width: 100%;
-	display: block;
+	opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
 }
+
+/*start  */
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: relative;
+  top: -20%;
+	/* bottom: 80%; */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.resume_image:hover .image {
+  opacity: 0.3;
+}
+
+.resume_image:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #26252d;
+  color: white;
+  font-size: 12px;
+  padding: 16px 16px;
+}
+/*end */
 
 .resume_wrapper .resume_title{
 	color: #fff;
@@ -227,4 +260,22 @@ body{
 	.resume_wrapper .resume_right .resmue_interests .interests .int_icon{
 		font-size: 24px;
 	}
+}
+
+.buttons{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 30px;
+}
+
+button{
+	background: #0175b2;
+	color: #fff;
+	padding: 10px 20px;
+	border: 0;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: 0.3s;
 }

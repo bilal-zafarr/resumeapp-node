@@ -14,6 +14,9 @@
 	<div class="resume_left">
 		<div class="resume_image">
 			<img src="img/pic.png" alt="Resume_image">
+			<div class="middle">
+    	<button class="text" contenteditable="false">Upload Image</button>
+  		</div>
 		</div>
 		<div class="resume_bottom">
 			<div class="resume_item resume_namerole">
@@ -32,9 +35,7 @@
 			<div class="resume_item resume_address">
 				<div class="resume_title">Address</div>
 				<div class="resume_info">
-					18th home,<br/>
-					woods street,<br/>
-					New York City, United States
+					18th Home, Woods Street, New York City, United States
 				</div>
 			</div>
 			<div class="resume_item resume_contact">
@@ -53,35 +54,35 @@
 				<div class="resume_info">
 					<div class="skills_list">
 						<div class="skills_left">HTML</div>
-						<div class="skills_bar">
+						{{!-- <div class="skills_bar">
 							<p>
 								<span style="width: 90%"></span>
 							</p>
-						</div>
+						</div> --}}
 					</div>
 					<div class="skills_list">
 						<div class="skills_left">CSS</div>
-						<div class="skills_bar">
+						{{!-- <div class="skills_bar">
 							<p>
 								<span style="width: 80%"></span>
 							</p>
-						</div>
+						</div> --}}
 					</div>
 					<div class="skills_list">
 						<div class="skills_left">Javascript</div>
-						<div class="skills_bar">
+						{{!-- <div class="skills_bar">
 							<p>
 								<span style="width: 50%"></span>
 							</p>
-						</div>
+						</div> --}}
 					</div>
 					<div class="skills_list">
 						<div class="skills_left">Photoshop</div>
-						<div class="skills_bar">
+						{{!-- <div class="skills_bar">
 							<p>
 								<span style="width: 95%"></span>
 							</p>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -158,7 +159,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="resume_item resmue_interests">
+		{{!-- <div class="resume_item resmue_interests">
 			<div class="resume_title">Interests</div>
 			<div class="resume_info">
 				<div class="interests">
@@ -186,9 +187,12 @@
 					<div class="int_data">Riding</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 	</div>
 </div>
-
+<div class="buttons">
+		<button>Save</button>
+		<button>Generate PDF</button>
+</div>
 </body>
 </html>
