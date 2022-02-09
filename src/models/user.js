@@ -4,6 +4,20 @@ const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
 
+// const myfun = async (path)=>{
+//   await imageToBase64(path).then(
+//         (response) => {
+//             console.log(response); // "cGF0aC90by9maWxlLmpwZw=="
+//             return response;
+//         }
+//     )
+//     .catch(
+//         (error) => {
+//             console.log(error); // Logs an error if there was one
+//         }
+//     )
+// }
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -19,20 +33,13 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   img:{
-    type: Buffer,
-    //contentType: String,
     type: String,
-    //default: imageToBase64(path.join(__dirname, '../../public/img/pic.png')),
-    // .then(
-    //     (response) => {
-    //         //console.log(response); // "cGF0aC90by9maWxlLmpwZw=="
-    //     }
-    // )
-    // .catch(
-    //     (error) => {
-    //         console.log(error); // Logs an error if there was one
-    //     }
-    // )
+    default: '/img/picc.jpg'
+    //contentType: String,
+    //default: myfun(path.join(__dirname, '../../public/img/pic.png')),
+    //default: fs.readFileSync(path.join(__dirname, '../../public/img/pic.png', 'base64')),
+    //type: String,
+    
   },
   name:{
     type: String,

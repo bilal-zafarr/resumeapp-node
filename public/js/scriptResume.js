@@ -33,7 +33,7 @@ document.getElementById('save').addEventListener('click', async (e) => {
   const year5ex = document.getElementById('year5ex').innerText;
   const title5ex = document.getElementById('title5ex').innerText;
   const desc5ex = document.getElementById('desc5ex').innerText;
-  //const img = document.getElementById('img').value;
+  const img = document.getElementById('dp').src;
 
   const res = await fetch('/api/update', {
     method: 'POST',
@@ -42,6 +42,7 @@ document.getElementById('save').addEventListener('click', async (e) => {
     },
     body: JSON.stringify({
       token: token,
+      img: img,
       name: name,
       role: role,
       info: info,
@@ -89,10 +90,10 @@ document.getElementById('save').addEventListener('click', async (e) => {
 
 document.getElementById('generatepdf').addEventListener('click', async () => {
   var element = document.getElementById('resume_wrapper');
-  element.style.marginTop = '-50px';
-  document.getElementById('uploaddp').style.visibility = 'hidden';
+  element.style.marginTop = '-100px';
+  document.getElementById('custom-button').style.visibility = 'hidden';
   var opt = {
-    filename:     'myfile.pdf',
+    filename:     'resume.pdf',
     image:        { type: 'jpeg', quality: 0.98 },
     html2canvas:  { scale: 2 },
     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }

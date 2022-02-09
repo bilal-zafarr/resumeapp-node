@@ -17,7 +17,6 @@
     "image-to-base64": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.0",
-    "multer": "^1.4.4",
-    "pdfkit": "^0.13.0"
+    "multer": "^1.4.4"
   }
 }

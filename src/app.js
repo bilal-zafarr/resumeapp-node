@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const User = require('./models/user.js');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
-const pdfkit = require('pdfkit');
+//const pdfkit = require('pdfkit');
 const fs = require('fs');
 const imageToBase64 = require('image-to-base64');
 
@@ -139,20 +139,16 @@ app.post('/api/login', async (req, res)=>{
   res.json({status:'error' , error: 'Invalid Username/Password'});
 })
 
-//uploading pic
-const upload = multer({
-  dest: 'images'
-});
-
 //updating info api
 app.post('/api/update', async (req, res) => {
   const {token} = req.body;
   const {id} = jwt.verify(token, JWT_SECRET);
-  const {name, role, info, address, phone, email, skills, year1, title1, desc1, year2, title2, desc2, year3, title3, desc3, year1ex, title1ex, desc1ex, year2ex, title2ex, desc2ex, year3ex, title3ex, desc3ex, year4ex, title4ex, desc4ex, year5ex, title5ex, desc5ex} = req.body;
+  const {name, img, role, info, address, phone, email, skills, year1, title1, desc1, year2, title2, desc2, year3, title3, desc3, year1ex, title1ex, desc1ex, year2ex, title2ex, desc2ex, year3ex, title3ex, desc3ex, year4ex, title4ex, desc4ex, year5ex, title5ex, desc5ex} = req.body;
   try{
     const my = await User.findByIdAndUpdate(id, {
       name,
       role,
+      img,
       info,
       address,
       phone,
