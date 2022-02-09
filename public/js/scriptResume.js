@@ -85,3 +85,21 @@ document.getElementById('save').addEventListener('click', async (e) => {
     alert(res.error);
   }
 })
+
+
+document.getElementById('generatepdf').addEventListener('click', async () => {
+  var element = document.getElementById('resume_wrapper');
+  element.style.marginTop = '-50px';
+  document.getElementById('uploaddp').style.visibility = 'hidden';
+  var opt = {
+    filename:     'myfile.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+  
+  // New Promise-based usage:
+  await html2pdf().set(opt).from(element).save();
+  element.style.marginTop = '50px';
+  document.getElementById('uploaddp').style.visibility = 'visible';;
+})

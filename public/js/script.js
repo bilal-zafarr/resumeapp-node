@@ -18,7 +18,7 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
   }).then((res) => res.json());
 
   if(res.status === 'ok'){
-    location.href = `/`;
+    location.href = `/resume?token=${res.data}`;
   }
 
   if(res.status === 'error'){

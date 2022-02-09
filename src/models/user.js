@@ -1,4 +1,8 @@
 mongoose = require('mongoose');
+const imageToBase64 = require('image-to-base64');
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -15,7 +19,20 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   img:{
-
+    type: Buffer,
+    //contentType: String,
+    type: String,
+    //default: imageToBase64(path.join(__dirname, '../../public/img/pic.png')),
+    // .then(
+    //     (response) => {
+    //         //console.log(response); // "cGF0aC90by9maWxlLmpwZw=="
+    //     }
+    // )
+    // .catch(
+    //     (error) => {
+    //         console.log(error); // Logs an error if there was one
+    //     }
+    // )
   },
   name:{
     type: String,

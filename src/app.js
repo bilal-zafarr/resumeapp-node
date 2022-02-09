@@ -6,6 +6,9 @@ const bcrypt = require('bcryptjs');
 const User = require('./models/user.js');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
+const pdfkit = require('pdfkit');
+const fs = require('fs');
+const imageToBase64 = require('image-to-base64');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -35,6 +38,7 @@ app.get('/resume',async (req, res) => {
   const token = req.query.token;
   const {username} = jwt.verify(token, JWT_SECRET);
   const user = await User.findOne({ username }).lean();
+  //console.log(user.img);
   res.render('resume',{
     img: user.img,
     name: user.name,
@@ -92,11 +96,16 @@ app.post('/api/signup', async (req, res) => {
   const password = await bcrypt.hash(plainTextPassword, 10);
 
   try {
-    await User.create({
+    const user = await User.create({
       username,
       email,
       password
-    })
+    });
+    const token = jwt.sign({
+      id:user._id,
+      username
+    }, JWT_SECRET);
+    return res.json({status: 'ok', data: token});
     
   } catch (error) {
     //duplicate key
@@ -105,7 +114,6 @@ app.post('/api/signup', async (req, res) => {
     }
     throw error;
   }
-  return res.json({status: 'ok'})
 })
 
 //login api
@@ -184,6 +192,11 @@ app.post('/api/update', async (req, res) => {
   }catch(e){
     res.json({status: 'error', error: e});
   }
+})
+
+app.get('/api/pdf', async (req, res) => {
+  const doc = new pdfkit();
+  doc.pipe(fs.createWriteStream('resume.pdf'));
 })
 
 app.listen(port, () => {
